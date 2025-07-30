@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flowSYNC</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="prefetch" href="./images/backg.webp" as="image" />
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/images/icons/site.webmanifest">
+    <link href="https://fonts.cdnfonts.com/css/gidugu" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/steamflixsans" rel="stylesheet">
+</head>
+<body>
+
+    <div id="auth">
+            <input type="email" id="auth-email" placeholder="Email">
+            <input type="password" id="auth-password" placeholder="Password">
+            <button onclick="logIn()">Log In</button>
+            <button onclick="signUp()">Sign Up</button>
+    </div>
+  
+    <div id="user-info" style="display: none;">
+        In as <span id="user-email"></span>
+        <button onclick="logOut()">Log Out</button>
+    </div>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <section id="home">
+        <img id="logo" src="/images/logo.png">
+        <div id="time">
+            <button  id="time1">Long Break</button>
+            <button  id="time2">Short Break</button>
+            <button id="time3">Pomodoro</button>
+        </div>
+        <div id="timer">
+            <span id="minutes">25</span><span id="colon">:</span><span id="seconds">00</span>
+        </div>
+        <div id="func">
+            <div class="toggle">
+                <button id="start" onclick="startTimer()">START</button>
+                <button id="pause" onclick="pauseTimer()" style="display: none;">PAUSE</button>
+            </div>
+            <button id="reset" onclick="resetTimer()">RESET</button>
+        </div>
+    </section> 
+    <section id="take-note">
+
+  
+        <div id="notes">
+            <div id="notes-header">
+                <h1>Notes</h1>
+                <button id="add-note-button">&#9998;Add</button>
+            </div>
+            <div id="work" class="category-wrapper">
+                <h2>Work</h2>
+                <div class="category" id="work-notes"></div>
+            </div>
+            <div id="project" class="category-wrapper">
+                <h2>Project</h2>
+                <div class="category" id="project-notes"></div>
+            </div>
+            <div id="personal" class="category-wrapper">
+                <h2>Personal</h2>
+                <div class="category" id="personal-notes"></div>
+            </div>
+        </div>
+
+        <div id="modal">
+            <div id="modal-content">
+                <h3>Add Note</h3>
+                <input id="note-title" type="text" placeholder="Title" />
+                <div id="title-error" class="error-message"></div>
+                <br>
+                <div class="note-row">
+                       <div id="category-buttons">
+                        <button type="button" class="category-button selected" data-category="work">Work</button>
+                        <button type="button" class="category-button" data-category="project">Project</button>
+                        <button type="button" class="category-button" data-category="personal">Personal</button>
+                      </div>
+                <input type="hidden" id="note-category" value="work" />
+                <input type="checkbox" id="note-important" hidden />
+                <label id="important-label" for="note-important" class="important-toggle">IMPORTANT</label>
+                </div>
+                <br>
+                <textarea id="note-content" placeholder="Write your note here..."></textarea><br><br>
+                <button id="sav-button" onclick="saveNote()">Save</button>
+                <button id="close-button" onclick="closeNote()">Cancel</button>
+            </div>
+        </div>
+
+        <div id="show-note" >
+            <div id="hide-show-note" onclick="hideNote()"></div>
+            <div id="show-note-content">
+                <input type="text" id="edit-note-title" placeholder="Title" oninput="startEditing()" />
+                <div id="edit-title-error" class="error-message"></div>
+                <br><br>
+                <textarea id="edit-note-content" rows="10" placeholder="Edit your note..." oninput="startEditing()"></textarea><br><br>
+    
+                <button id="save-button" type="button" onclick="saveEditedNote()" style="display: none;">Save Changes</button>
+                <button id="hide-button" type="button" onclick="hideNote()">Hide</button>
+                <button id="delete-button" type="button" onclick="deleteNote()">Delete</button>
+            </div>
+        </div>
+    </section>   
+</body>
+</html>
