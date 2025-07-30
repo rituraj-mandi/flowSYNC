@@ -153,32 +153,34 @@ async function saveEditedNote() {
       .eq('id', currentNoteId)
       .select();
 
-    hideLoading();
     if (error) {
       alert("Error saving changes: " + error.message);
+      hideLoading();
       return;
     }
-
-    document.querySelectorAll(".category").forEach(div => div.innerHTML = "");
-    notes.forEach(renderNote);
+    document.getElementById("edit-title-error").textContent = "";
+    await loadNotes();
+    
+    hideLoading();
     hideNote();
 }
 
 async function deleteNote() {
-    showLoading();
     const confirmDelete = confirm("Are you sure you want to delete this note?");
     if (!confirmDelete) return;
+    
+    showLoading();
   
     const { error } = await supabase.from("notes").delete().eq("id", currentNoteId);
     if (error) {
       alert("Delete failed: " + error.message);
+      hideLoading();
       return;
     }
 
+    await loadNotes();
+    
     hideLoading();
-
-    document.querySelectorAll(".category").forEach(div => div.innerHTML = "");
-    notes.forEach(renderNote);
     hideNote();
 }
 
@@ -188,11 +190,6 @@ function hideNote() {
 }
 
 async function loadNotes() {
-  const localData = localStorage.getItem("notes");
-  if (localData) {
-    notes = JSON.parse(localData);
-    notes.forEach(renderNote);
-  }
 
   const { data, error } = await supabase.from("notes").select("*").order("created_at", { ascending: false });
   if (!error && data) {
@@ -244,7 +241,6 @@ async function saveNote() {
 
   if (!error && data) {
     notes.unshift(data[0]);
-    localStorage.setItem("notes", JSON.stringify(notes));
     renderNote(data[0]);
     closeNote();
   } else {
