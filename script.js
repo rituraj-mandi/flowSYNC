@@ -68,7 +68,7 @@ window.addEventListener("resize", fixMobileVH);
 fixMobileVH();
 
 const SUPABASE_URL = 'https://fqmwxizmarpdwdadjuil.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_KEY;
+const SUPABASE_ANON_KEY = 'sb_publishable_0U39m-AQ28dV1R6RJoM4Nw_meVs_305';
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let user = null;
@@ -292,6 +292,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       label.classList.toggle("active", checkbox.checked);
     });
 });
+
 
 
 
