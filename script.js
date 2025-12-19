@@ -68,7 +68,7 @@ window.addEventListener("resize", fixMobileVH);
 fixMobileVH();
 
 const SUPABASE_URL = 'https://fqmwxizmarpdwdadjuil.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_0U39m-AQ28dV1R6RJoM4Nw_meVs_305';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxbXd4aXptYXJwZHdkYWRqdWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNTM4NzIsImV4cCI6MjA2MzYyOTg3Mn0.MUuQ_ZXIfld4LSGLUF6uL9NWICN4si2spQE8k-CssDk';
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let user = null;
@@ -292,6 +292,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       label.classList.toggle("active", checkbox.checked);
     });
 });
+
 
 
 
