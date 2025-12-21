@@ -1,3 +1,6 @@
+The Project "flowSYNC" is currently out of service and requires some time to get back.
+Thankyou for yor co-opereration.
+
 # flowSYNC
 
 A modern web application that combines productivity tools with note-taking capabilities. flowSYNC integrates a customizable Pomodoro timer with a comprehensive note management system, allowing you to stay focused and organized from any device with an internet connection.
